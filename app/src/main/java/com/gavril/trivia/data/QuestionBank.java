@@ -53,7 +53,7 @@ public class QuestionBank {
         });
 
         AppController.getInstance().addToRequestQueue(jsonObjectRequest);
-        return null;
+        return questions;
     }
 
 }

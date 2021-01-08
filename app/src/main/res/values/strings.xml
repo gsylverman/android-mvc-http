@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Trivia</string>
+    <string name="trivia">Trivia</string>
+    <string name="true_button">True</string>
+    <string name="false_button">False</string>
+    <string name="next_button">TODO</string>
+    <string name="prev_button">TODO</string>
+    <string name="textview">TextView</string>
+    <string name="out_of_50"></string>
+    <string name="correct_answer">Correct Answer</string>
+    <string name="wrong_answer">Wrong Answer</string>
+
 </resources>
