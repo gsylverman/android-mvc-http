@@ -42,7 +42,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fontFamily="@font/fontdiner_swanky"
-            android:padding="4dp"
+            android:gravity="center_vertical"
+            android:padding="8dp"
             android:text="@string/textview" />
     </androidx.cardview.widget.CardView>
 

@@ -3,6 +3,7 @@ package com.gavril.trivia;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
@@ -29,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ImageButton nextButton;
     private int currentIndex = 0;
     private List<Question> questionList;
+    private CardView cardView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         falseButton = findViewById(R.id.false_button);
         prevButton = findViewById(R.id.prev_button);
         nextButton = findViewById(R.id.next_button);
+        cardView = findViewById(R.id.cardView);
 
         trueButton.setOnClickListener(this);
         falseButton.setOnClickListener(this);
@@ -68,6 +71,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         updateQuestion();
         if (userAnswer == questionList.get(currentIndex).isAnswerTrue()) {
             messageId = R.string.correct_answer;
+            fadeView();
         } else {
             messageId = R.string.wrong_answer;
             shakeAnimation();
@@ -77,7 +81,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void shakeAnimation() {
         Animation shake = AnimationUtils.loadAnimation(MainActivity.this, R.anim.shake_animation);
-        CardView cardView = findViewById(R.id.cardView);
         cardView.setAnimation(shake);
 
         shake.setAnimationListener(new Animation.AnimationListener() {
@@ -90,6 +93,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onAnimationEnd(Animation animation) {
                 cardView.setCardBackgroundColor(Color.WHITE);
 
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+    }
+
+    private void fadeView() {
+        AlphaAnimation alphaAnimation = new AlphaAnimation(1.0f, 0.0f);
+        alphaAnimation.setDuration(300);
+        alphaAnimation.setRepeatCount(1);
+        alphaAnimation.setRepeatMode(Animation.REVERSE);
+        cardView.setAnimation(alphaAnimation);
+
+        alphaAnimation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+                cardView.setCardBackgroundColor(Color.GREEN);
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                cardView.setCardBackgroundColor(Color.WHITE);
             }
 
             @Override
